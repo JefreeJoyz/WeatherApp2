@@ -11,6 +11,13 @@
 		BC8B353D285144CB00AAD709 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B353C285144CB00AAD709 /* ContentView.swift */; };
 		BC8B353F285144CD00AAD709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8B353E285144CD00AAD709 /* Assets.xcassets */; };
 		BC8B3542285144CD00AAD709 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8B3541285144CD00AAD709 /* Preview Assets.xcassets */; };
+		BC8B354C2851450F00AAD709 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B354B2851450F00AAD709 /* MainPageView.swift */; };
+		BC8B354E28514AFD00AAD709 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B354D28514AFD00AAD709 /* WeatherViewModel.swift */; };
+		BC8B355028514C5400AAD709 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B354F28514C5400AAD709 /* WeatherModel.swift */; };
+		BC8B3552285154CB00AAD709 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B3551285154CB00AAD709 /* LocationViewModel.swift */; };
+		BC8B35542851550900AAD709 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B35532851550900AAD709 /* LocationView.swift */; };
+		BC8B35562851576D00AAD709 /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B35552851576D00AAD709 /* ForecastModel.swift */; };
+		BC8B355928523C6400AAD709 /* MapLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B355828523C6400AAD709 /* MapLocationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,14 @@
 		BC8B353C285144CB00AAD709 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BC8B353E285144CD00AAD709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC8B3541285144CD00AAD709 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BC8B354B2851450F00AAD709 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		BC8B354D28514AFD00AAD709 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		BC8B354F28514C5400AAD709 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		BC8B3551285154CB00AAD709 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		BC8B35532851550900AAD709 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		BC8B35552851576D00AAD709 /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
+		BC8B3557285228C400AAD709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BC8B355828523C6400AAD709 /* MapLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +66,10 @@
 		BC8B3539285144CB00AAD709 /* WeatherApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				BC8B3557285228C400AAD709 /* Info.plist */,
+				BC8B354A285144E800AAD709 /* Model */,
+				BC8B3549285144E100AAD709 /* ViewModel */,
+				BC8B3548285144DB00AAD709 /* View */,
 				BC8B353A285144CB00AAD709 /* WeatherApp2App.swift */,
 				BC8B353C285144CB00AAD709 /* ContentView.swift */,
 				BC8B353E285144CD00AAD709 /* Assets.xcassets */,
@@ -65,6 +84,34 @@
 				BC8B3541285144CD00AAD709 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BC8B3548285144DB00AAD709 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC8B354B2851450F00AAD709 /* MainPageView.swift */,
+				BC8B35532851550900AAD709 /* LocationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BC8B3549285144E100AAD709 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BC8B354D28514AFD00AAD709 /* WeatherViewModel.swift */,
+				BC8B3551285154CB00AAD709 /* LocationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BC8B354A285144E800AAD709 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BC8B354F28514C5400AAD709 /* WeatherModel.swift */,
+				BC8B35552851576D00AAD709 /* ForecastModel.swift */,
+				BC8B355828523C6400AAD709 /* MapLocationModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +185,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC8B353D285144CB00AAD709 /* ContentView.swift in Sources */,
+				BC8B3552285154CB00AAD709 /* LocationViewModel.swift in Sources */,
+				BC8B354E28514AFD00AAD709 /* WeatherViewModel.swift in Sources */,
+				BC8B355928523C6400AAD709 /* MapLocationModel.swift in Sources */,
 				BC8B353B285144CB00AAD709 /* WeatherApp2App.swift in Sources */,
+				BC8B35542851550900AAD709 /* LocationView.swift in Sources */,
+				BC8B354C2851450F00AAD709 /* MainPageView.swift in Sources */,
+				BC8B35562851576D00AAD709 /* ForecastModel.swift in Sources */,
+				BC8B355028514C5400AAD709 /* WeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +324,8 @@
 				DEVELOPMENT_TEAM = QDSBWXHJ8Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherApp2/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "It need to show your location on the map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +355,8 @@
 				DEVELOPMENT_TEAM = QDSBWXHJ8Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherApp2/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "It need to show your location on the map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
