@@ -17,7 +17,9 @@
 		BC8B3552285154CB00AAD709 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B3551285154CB00AAD709 /* LocationViewModel.swift */; };
 		BC8B35542851550900AAD709 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B35532851550900AAD709 /* LocationView.swift */; };
 		BC8B35562851576D00AAD709 /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B35552851576D00AAD709 /* ForecastModel.swift */; };
-		BC8B355928523C6400AAD709 /* MapLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B355828523C6400AAD709 /* MapLocationModel.swift */; };
+		BCD7D36A28528CF7005FC7A3 /* ForecastPerDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D36928528CF7005FC7A3 /* ForecastPerDayView.swift */; };
+		BCD7D36C28528D5A005FC7A3 /* ForecastPerHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D36B28528D5A005FC7A3 /* ForecastPerHourView.swift */; };
+		BCD7D36E28528DAB005FC7A3 /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D36D28528DAB005FC7A3 /* CurrentWeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +35,9 @@
 		BC8B35532851550900AAD709 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		BC8B35552851576D00AAD709 /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
 		BC8B3557285228C400AAD709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		BC8B355828523C6400AAD709 /* MapLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationModel.swift; sourceTree = "<group>"; };
+		BCD7D36928528CF7005FC7A3 /* ForecastPerDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPerDayView.swift; sourceTree = "<group>"; };
+		BCD7D36B28528D5A005FC7A3 /* ForecastPerHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPerHourView.swift; sourceTree = "<group>"; };
+		BCD7D36D28528DAB005FC7A3 /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,9 @@
 			children = (
 				BC8B354B2851450F00AAD709 /* MainPageView.swift */,
 				BC8B35532851550900AAD709 /* LocationView.swift */,
+				BCD7D36928528CF7005FC7A3 /* ForecastPerDayView.swift */,
+				BCD7D36B28528D5A005FC7A3 /* ForecastPerHourView.swift */,
+				BCD7D36D28528DAB005FC7A3 /* CurrentWeatherView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -109,7 +116,6 @@
 			children = (
 				BC8B354F28514C5400AAD709 /* WeatherModel.swift */,
 				BC8B35552851576D00AAD709 /* ForecastModel.swift */,
-				BC8B355828523C6400AAD709 /* MapLocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,9 +191,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC8B353D285144CB00AAD709 /* ContentView.swift in Sources */,
+				BCD7D36A28528CF7005FC7A3 /* ForecastPerDayView.swift in Sources */,
 				BC8B3552285154CB00AAD709 /* LocationViewModel.swift in Sources */,
+				BCD7D36C28528D5A005FC7A3 /* ForecastPerHourView.swift in Sources */,
 				BC8B354E28514AFD00AAD709 /* WeatherViewModel.swift in Sources */,
-				BC8B355928523C6400AAD709 /* MapLocationModel.swift in Sources */,
+				BCD7D36E28528DAB005FC7A3 /* CurrentWeatherView.swift in Sources */,
 				BC8B353B285144CB00AAD709 /* WeatherApp2App.swift in Sources */,
 				BC8B35542851550900AAD709 /* LocationView.swift in Sources */,
 				BC8B354C2851450F00AAD709 /* MainPageView.swift in Sources */,

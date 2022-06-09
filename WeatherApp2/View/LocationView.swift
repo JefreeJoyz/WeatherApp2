@@ -19,8 +19,8 @@ struct LocationView: View {
             .onAppear {
                 vm.checkIfLocationServivesIsEnabled()
             }
-        Text("\(vm.userLatitude)")
-        Text("\(vm.userLongitude)")
+        //Text("\(vm.userLatitude)")
+        //Text("\(vm.userLongitude)")
     }
 }
 

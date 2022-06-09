@@ -74,23 +74,35 @@ class WeatherViewModel: ObservableObject {
         let unixTimestamp = Double(unixTime)
         let date = Date(timeIntervalSince1970: unixTimestamp)
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        dateFormatter.timeZone = TimeZone(abbreviation: "EEST")
         dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "HH:mm"
         let strDate = dateFormatter.string(from: date)
         return strDate
-        
     }
     
-//    func timeTo (time: String) {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-//        
-//        let newFormatter = DateFormatter()
-//        newFormatter.dateFormat = "HH:mm"
-//        
-//        let date = formatter.date(from: time)
-//        print(date as Any)
-//        return date
-//    }
+    func unixTimeToWed (unixTime: Int) -> String {
+        
+        let unixTimestamp = Double(unixTime)
+        let date = Date(timeIntervalSince1970: unixTimestamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "EEST")
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "E"
+        let strDate = dateFormatter.string(from: date)
+        return strDate
+    }
+    
+    func unixTimeToMain (unixTime: Int) -> String {
+        
+        let unixTimestamp = Double(unixTime)
+        let date = Date(timeIntervalSince1970: unixTimestamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "EEST")
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "E, MMM dd"
+        let strDate = dateFormatter.string(from: date)
+        return strDate
+    }
+    
 }

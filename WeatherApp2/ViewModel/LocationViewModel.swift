@@ -6,7 +6,6 @@
 //
 
 import MapKit
-//import CoreLocation
 
 class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { // CLLocationManagerDelegate - уведомляет нас каждый раз
     var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
