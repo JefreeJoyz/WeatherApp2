@@ -21,7 +21,9 @@ struct ForecastPerHour: View {
                         ForEach(items.forecast.forecastday) { keys in
                             ForEach(keys.hour) { elements in
                                 VStack(spacing: 0) {
+                                    // Выводим время
                                     Text("\(vm.unixTimeToWed(unixTime: elements.timeEpoch, timeformat: timeFormat.hoursDays.rawValue))")
+                                    // Тянем картинку погоды
                                     AsyncImage(url: URL(string: "https:\(keys.day.condition.icon)")) { phase in
                                         switch phase {
                                         case .empty:
@@ -37,6 +39,7 @@ struct ForecastPerHour: View {
                                             Text("unknown case")
                                         }
                                     }
+                                    // Температура
                                     Text("\(Int(elements.tempC))°")
                                 }
                                 .font(.headline)

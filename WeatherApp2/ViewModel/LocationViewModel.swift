@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import SwiftUI
 
 class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { // CLLocationManagerDelegate - уведомляет нас каждый раз
     
@@ -13,16 +14,15 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
         let localCities = LocationsData.cities
         self.localCities = localCities
         self.mapLocation = localCities.first!
-        
     }
     var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
     @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 47.83, longitude: 35.13),
+        center: CLLocationCoordinate2D(latitude: 47.8388, longitude: 35.1396),
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)) // center - координата, span - зум
     
     @Published var localCities: [MyCity]
     
-    // Запускаем locationManager
+    // Инициация locationManager
     func checkIfLocationServivesIsEnabled () {
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager ()
@@ -30,11 +30,11 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
             //checkLocationAuthorization () - если пропишем так, то оно запросит пермишен только в 1й раз. А потом если юзер ограничит их - оно спрашивать не будет
             locationManager?.delegate = self
         } else {
-            print ("show alert to letting them know")
+            print ("locationServices isn't Enabled")
         }
     }
     
-    // получаем координаты юзера
+    // Получаем координаты юзера
     var userLatitude: String {
             return "\(locationManager?.location?.coordinate.latitude ?? 0)"
         }
@@ -42,6 +42,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
             return "\(locationManager?.location?.coordinate.longitude ?? 0)"
         }
     
+    // Проверяем наличие пермишенов
     private func checkLocationAuthorization () {
         guard let locationManager = locationManager else { return }
         switch locationManager.authorizationStatus {
@@ -67,20 +68,25 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
     // Показать лист городов
     @Published var showLocationList: Bool = false
     
+    
     func showLocation(location: MyCity) {
         mapLocation = location
         showLocationList = false
     }
     
-    
-    
+    // Нужна для того, что бы дернуть функцию
     @Published var mapLocation: MyCity {
         didSet {
             updateMapRegion(location: mapLocation)
         }
     }
     
+    // Обновление локации при выбранном городе
     func updateMapRegion (location: MyCity) {
-        
+        withAnimation(.easeInOut) {
+            region = MKCoordinateRegion(
+                center: location.coordinates,
+                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        }
     }
 }

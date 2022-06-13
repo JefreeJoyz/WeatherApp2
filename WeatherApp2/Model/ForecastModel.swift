@@ -66,37 +66,6 @@ struct Condition5: Codable {
     let code: Int
 }
 
-//enum Icon: String, Codable {
-//    case cdnWeatherapiCOMWeather64X64Day113PNG = "//cdn.weatherapi.com/weather/64x64/day/113.png"
-//    case cdnWeatherapiCOMWeather64X64Day116PNG = "//cdn.weatherapi.com/weather/64x64/day/116.png"
-//    case cdnWeatherapiCOMWeather64X64Day176PNG = "//cdn.weatherapi.com/weather/64x64/day/176.png"
-//    case cdnWeatherapiCOMWeather64X64Night113PNG = "//cdn.weatherapi.com/weather/64x64/night/113.png"
-//}
-
-
-
-//enum Text5: String, Codable {
-//    case clear = "Clear"
-//    case partlyCloudy = "Partly cloudy"
-//    case patchyRainPossible = "Patchy rain possible"
-//    case sunny = "Sunny"
-//}
-
-//enum WindDir: String, Codable {
-//    case e = "E"
-//    case ene = "ENE"
-//    case ese = "ESE"
-//    case n = "N"
-//    case ne = "NE"
-//    case nnw = "NNW"
-//    case nw = "NW"
-//    case se = "SE"
-//    case nne = "NNE"
-//
-//}
-
-
-
 // MARK: - Forecast
 struct Forecast5: Codable {
     let forecastday: [Forecastday]

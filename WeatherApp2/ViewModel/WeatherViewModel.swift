@@ -24,6 +24,7 @@ class WeatherViewModel: ObservableObject {
         getCurrentWeather2  (lat: "47.8388", lon: "35.1396")
     }
     
+    // Получаем прогноз на сегодня
     func getCurrentWeather2 (lat: String, lon: String) {
         guard let url = URL(string: "\(baseUrl)current.json?key=\(key)&q=\(lat),\(lon)&aqi=no") else { return }
         URLSession.shared.dataTaskPublisher(for: url)
@@ -47,7 +48,7 @@ class WeatherViewModel: ObservableObject {
     }
     
     
-    
+    // Получаем прогноз на ближайшие дни
     func getForecastFiveDays (lat: String, lon: String) {
         guard let url = URL(string: "\(baseUrl)forecast.json?key=\(key)&q=\(lat),\(lon)&days=5&aqi=no&alerts=no") else { return }
         URLSession.shared.dataTaskPublisher(for: url)
@@ -68,6 +69,7 @@ class WeatherViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    // Валидация хттп респонсов
     func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
         guard
             let response = output.response as? HTTPURLResponse,

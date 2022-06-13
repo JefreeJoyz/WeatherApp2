@@ -11,8 +11,6 @@ import MapKit
 struct LocationView: View {
     
     @EnvironmentObject var vm: LocationManager
-    //@StateObject var vm = LocationManager()
-    @State var x: String = ""
     
     var body: some View {
         ZStack {

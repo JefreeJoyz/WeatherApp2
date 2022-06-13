@@ -11,11 +11,11 @@ struct CitiesListView: View {
     
     @EnvironmentObject var vm : LocationManager
     @EnvironmentObject var vmv : WeatherViewModel
-    //@StateObject var vmv = WeatherViewModel()
     
     var body: some View {
         List {
             ForEach(vm.localCities) { items in
+                // По клику на элемент - отправляем координаты города в функции получения прогноза на сейчас и на ближайшие дни
                 Button {
                     vm.showLocation(location: items)
                     vmv.getCurrentWeather2(lat: "\(String(describing: vm.locationManager?.location?.coordinate.latitude))", lon: "\(String(describing: vm.locationManager?.location?.coordinate.longitude))")
@@ -29,7 +29,6 @@ struct CitiesListView: View {
             .padding(.vertical, 4)
             .listRowBackground(Color.clear)
         }
-        //.listStyle(.plain)
     }
 }
 

@@ -20,8 +20,10 @@ struct WeatherNow: View {
                     VStack (alignment: .leading) {
                         HStack {
                             Image(systemName: "location.fill")
+                            // Выбранный город
                             Text("\(vmv.mapLocation.cityName)")
                             Spacer()
+                            // Навигация по клику по картинке
                             NavigationLink {
                                 LocationView()
                             } label: {
@@ -30,6 +32,7 @@ struct WeatherNow: View {
                         }
                         .padding(.top)
                         .font(.largeTitle)
+                        // Отображаем текущую дату
                         Text("\(vm.unixTimeToWed(unixTime: temperature.location.localtimeEpoch, timeformat: timeFormat.shortData.rawValue))")
                     }
                     HStack {
@@ -50,16 +53,19 @@ struct WeatherNow: View {
                             }
                         }
                         Spacer()
-                        // pictograms
+                        // Пиктограммы
                         VStack(alignment: .leading, spacing: 5) {
                             Image(systemName: "thermometer")
                             Image(systemName: "humidity")
                             Image(systemName: "wind")
                         }
-                        // temperature values
+                        // Значения пиктограмм
                         VStack(alignment: .leading, spacing: 5) {
+                            // Текущая температура
                             Text("\(Int(temperature.current.tempC.rounded()))°")
+                            // Влажность
                             Text("\(Int(temperature.current.humidity))%")
+                            // Скорость ветра
                             Text("\(Int(temperature.current.windKph)) km / h")
                         }
                     }
