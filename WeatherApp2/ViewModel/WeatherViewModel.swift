@@ -21,7 +21,7 @@ class WeatherViewModel: ObservableObject {
   
     init () {
         getForecastFiveDays (lat: "47.8388", lon: "35.1396")
-        getCurrentWeather2  (lat: "47.8388", lon: "35.1396")
+        getCurrentWeather2  (lat: "47.8388", lon: "35.1396") // zp
     }
     
     // Получаем прогноз на сегодня

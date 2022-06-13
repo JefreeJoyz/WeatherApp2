@@ -16,7 +16,19 @@ struct LocationView: View {
         ZStack {
             
             Map(coordinateRegion: $vm.region,
-                showsUserLocation: true)
+                showsUserLocation: true,
+                annotationItems: vm.localCities,
+                annotationContent: { location in
+                // Flags on the map
+                MapAnnotation(coordinate: location.coordinates) {
+                    LocationMapAnnotationView()
+                    //LocationMapAnnotationView()
+                    // vm.MapLocation == location - if our location is current
+                        .onTapGesture {
+                            vm.showLocation(location: location)
+                        }
+                }
+            })
              .ignoresSafeArea()
             
             VStack {

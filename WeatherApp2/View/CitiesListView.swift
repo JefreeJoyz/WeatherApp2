@@ -18,8 +18,12 @@ struct CitiesListView: View {
                 // По клику на элемент - отправляем координаты города в функции получения прогноза на сейчас и на ближайшие дни
                 Button {
                     vm.showLocation(location: items)
-                    vmv.getCurrentWeather2(lat: "\(String(describing: vm.locationManager?.location?.coordinate.latitude))", lon: "\(String(describing: vm.locationManager?.location?.coordinate.longitude))")
-                    vmv.getForecastFiveDays(lat: "\(String(describing: vm.locationManager?.location?.coordinate.latitude))", lon: "\(String(describing: vm.locationManager?.location?.coordinate.longitude))")
+                    vmv.getCurrentWeather2(
+                        lat: String(items.coordinates.latitude),
+                        lon: String(items.coordinates.longitude))
+                    vmv.getForecastFiveDays(
+                        lat: String(items.coordinates.latitude),
+                        lon: String(items.coordinates.longitude))
                 } label: {
                     Text("\(items.cityName)")
                 }

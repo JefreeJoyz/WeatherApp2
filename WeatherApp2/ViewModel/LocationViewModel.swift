@@ -18,7 +18,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
     var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 47.8388, longitude: 35.1396),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)) // center - координата, span - зум
+        span: MKCoordinateSpan(latitudeDelta: 7.0, longitudeDelta: 7.0))
     
     @Published var localCities: [MyCity]
     
@@ -86,7 +86,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
         withAnimation(.easeInOut) {
             region = MKCoordinateRegion(
                 center: location.coordinates,
-                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                span: MKCoordinateSpan(latitudeDelta: 7.0, longitudeDelta: 7.0))
         }
     }
 }
