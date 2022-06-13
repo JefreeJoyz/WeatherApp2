@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct WeatherNow: View {
-    @StateObject var vm = WeatherViewModel()
+    
+    @EnvironmentObject var vm: WeatherViewModel
+    @EnvironmentObject var vmv: LocationManager
+    
     var body: some View {
         ZStack {
             Color(.init(srgbRed: 0.29, green: 0.56, blue: 0.89, alpha: 1))
@@ -17,15 +20,17 @@ struct WeatherNow: View {
                     VStack (alignment: .leading) {
                         HStack {
                             Image(systemName: "location.fill")
-                            NavigationLink("Запорожье") {
-                                LocationView()
-                            }
+                            Text("\(vmv.mapLocation.cityName)")
                             Spacer()
-                            Image(systemName: "map.fill")
+                            NavigationLink {
+                                LocationView()
+                            } label: {
+                                Image(systemName: "map.fill")
+                            }
                         }
                         .padding(.top)
                         .font(.largeTitle)
-                        Text("\(vm.unixTimeToMain(unixTime: temperature.location.localtimeEpoch))")
+                        Text("\(vm.unixTimeToWed(unixTime: temperature.location.localtimeEpoch, timeformat: timeFormat.shortData.rawValue))")
                     }
                     HStack {
                         // Тянем картинку
@@ -57,7 +62,6 @@ struct WeatherNow: View {
                             Text("\(Int(temperature.current.humidity))%")
                             Text("\(Int(temperature.current.windKph)) km / h")
                         }
-                        
                     }
                     .font(.title2)
                 }

@@ -8,21 +8,21 @@
 import MapKit
 
 class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { // CLLocationManagerDelegate - уведомляет нас каждый раз
+    
+    override init () {
+        let localCities = LocationsData.cities
+        self.localCities = localCities
+        self.mapLocation = localCities.first!
+        
+    }
     var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 47.83, longitude: 35.13),
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)) // center - координата, span - зум
     
-    // получаем координаты юзера
-    var userLatitude: String {
-            return "\(locationManager?.location?.coordinate.latitude ?? 0)"
-        }
-    var userLongitude: String {
-            return "\(locationManager?.location?.coordinate.longitude ?? 0)"
-        }
+    @Published var localCities: [MyCity]
     
-    
-    
+    // Запускаем locationManager
     func checkIfLocationServivesIsEnabled () {
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager ()
@@ -33,6 +33,14 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
             print ("show alert to letting them know")
         }
     }
+    
+    // получаем координаты юзера
+    var userLatitude: String {
+            return "\(locationManager?.location?.coordinate.latitude ?? 0)"
+        }
+    var userLongitude: String {
+            return "\(locationManager?.location?.coordinate.longitude ?? 0)"
+        }
     
     private func checkLocationAuthorization () {
         guard let locationManager = locationManager else { return }
@@ -54,5 +62,25 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
     // Система дергает этот метод каждый раз, как только мы создаем locationManager и повторно, если изменились доступы аппа (пермишены)
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization ()
+    }
+    
+    // Показать лист городов
+    @Published var showLocationList: Bool = false
+    
+    func showLocation(location: MyCity) {
+        mapLocation = location
+        showLocationList = false
+    }
+    
+    
+    
+    @Published var mapLocation: MyCity {
+        didSet {
+            updateMapRegion(location: mapLocation)
+        }
+    }
+    
+    func updateMapRegion (location: MyCity) {
+        
     }
 }

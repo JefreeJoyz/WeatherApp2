@@ -11,7 +11,7 @@ import Foundation
 struct Current: Codable, Identifiable {
     let location: Location
     let current: CurrentClass
-    var id: UUID? = UUID()
+    var id: String?
 }
 
 // MARK: - CurrentClass
@@ -26,7 +26,8 @@ struct CurrentClass: Codable {
     let windDir: String
     let pressureMB: Int
     let pressureIn: Double
-    let precipMm, precipIn, humidity, cloud: Int
+    let humidity, cloud: Int
+    let precipMm, precipIn: Double
     let feelslikeC, feelslikeF: Double
     let visKM, visMiles, uv: Int
     let gustMph, gustKph: Double

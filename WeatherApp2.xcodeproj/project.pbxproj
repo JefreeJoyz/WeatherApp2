@@ -20,6 +20,9 @@
 		BCD7D36A28528CF7005FC7A3 /* ForecastPerDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D36928528CF7005FC7A3 /* ForecastPerDayView.swift */; };
 		BCD7D36C28528D5A005FC7A3 /* ForecastPerHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D36B28528D5A005FC7A3 /* ForecastPerHourView.swift */; };
 		BCD7D36E28528DAB005FC7A3 /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D36D28528DAB005FC7A3 /* CurrentWeatherView.swift */; };
+		BCD7D37128538B21005FC7A3 /* LocationsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D37028538B21005FC7A3 /* LocationsData.swift */; };
+		BCD7D37328538C68005FC7A3 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D37228538C68005FC7A3 /* CityModel.swift */; };
+		BCD7D3752853913B005FC7A3 /* CitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7D3742853913B005FC7A3 /* CitiesListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		BCD7D36928528CF7005FC7A3 /* ForecastPerDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPerDayView.swift; sourceTree = "<group>"; };
 		BCD7D36B28528D5A005FC7A3 /* ForecastPerHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPerHourView.swift; sourceTree = "<group>"; };
 		BCD7D36D28528DAB005FC7A3 /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
+		BCD7D37028538B21005FC7A3 /* LocationsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsData.swift; sourceTree = "<group>"; };
+		BCD7D37228538C68005FC7A3 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		BCD7D3742853913B005FC7A3 /* CitiesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 		BC8B3539285144CB00AAD709 /* WeatherApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				BCD7D36F28538B10005FC7A3 /* Data */,
 				BC8B3557285228C400AAD709 /* Info.plist */,
 				BC8B354A285144E800AAD709 /* Model */,
 				BC8B3549285144E100AAD709 /* ViewModel */,
@@ -98,6 +105,7 @@
 				BCD7D36928528CF7005FC7A3 /* ForecastPerDayView.swift */,
 				BCD7D36B28528D5A005FC7A3 /* ForecastPerHourView.swift */,
 				BCD7D36D28528DAB005FC7A3 /* CurrentWeatherView.swift */,
+				BCD7D3742853913B005FC7A3 /* CitiesListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,8 +124,17 @@
 			children = (
 				BC8B354F28514C5400AAD709 /* WeatherModel.swift */,
 				BC8B35552851576D00AAD709 /* ForecastModel.swift */,
+				BCD7D37228538C68005FC7A3 /* CityModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BCD7D36F28538B10005FC7A3 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BCD7D37028538B21005FC7A3 /* LocationsData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,13 +208,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC8B353D285144CB00AAD709 /* ContentView.swift in Sources */,
+				BCD7D3752853913B005FC7A3 /* CitiesListView.swift in Sources */,
 				BCD7D36A28528CF7005FC7A3 /* ForecastPerDayView.swift in Sources */,
 				BC8B3552285154CB00AAD709 /* LocationViewModel.swift in Sources */,
 				BCD7D36C28528D5A005FC7A3 /* ForecastPerHourView.swift in Sources */,
+				BCD7D37328538C68005FC7A3 /* CityModel.swift in Sources */,
 				BC8B354E28514AFD00AAD709 /* WeatherViewModel.swift in Sources */,
 				BCD7D36E28528DAB005FC7A3 /* CurrentWeatherView.swift in Sources */,
 				BC8B353B285144CB00AAD709 /* WeatherApp2App.swift in Sources */,
 				BC8B35542851550900AAD709 /* LocationView.swift in Sources */,
+				BCD7D37128538B21005FC7A3 /* LocationsData.swift in Sources */,
 				BC8B354C2851450F00AAD709 /* MainPageView.swift in Sources */,
 				BC8B35562851576D00AAD709 /* ForecastModel.swift in Sources */,
 				BC8B355028514C5400AAD709 /* WeatherModel.swift in Sources */,

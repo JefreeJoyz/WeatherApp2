@@ -10,17 +10,39 @@ import MapKit
 
 struct LocationView: View {
     
-    @StateObject var vm = LocationManager()
+    @EnvironmentObject var vm: LocationManager
+    //@StateObject var vm = LocationManager()
+    @State var x: String = ""
     
     var body: some View {
-        Map(coordinateRegion: $vm.region,
-        showsUserLocation: true)
-            .ignoresSafeArea()
-            .onAppear {
-                vm.checkIfLocationServivesIsEnabled()
+        ZStack {
+            
+            Map(coordinateRegion: $vm.region,
+                showsUserLocation: true)
+             .ignoresSafeArea()
+            
+            VStack {
+                Button {
+                    vm.showLocationList.toggle()
+                } label: {
+                    Text("\(vm.mapLocation.cityName)")
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.blue)
+                        .font(.headline)
+                        .background(.white)
+                        .cornerRadius(15)
+                }
+                if vm.showLocationList {
+                    CitiesListView()
+                }
+                Spacer()
             }
-        //Text("\(vm.userLatitude)")
-        //Text("\(vm.userLongitude)")
+            .padding()
+        }
+        .onAppear {
+            vm.checkIfLocationServivesIsEnabled()
+        }
     }
 }
 

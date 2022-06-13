@@ -24,10 +24,11 @@ struct CurrentClass5: Codable {
     let condition: Condition
     let windMph, windKph: Double
     let windDegree: Int
-    let windDir: WindDir
+    let windDir: String
     let pressureMB: Int
     let pressureIn: Double
-    let precipMm, precipIn, humidity, cloud: Int
+    let precipMm, precipIn: Double
+    let humidity, cloud: Int
     let feelslikeC, feelslikeF: Double
     let visKM, visMiles, uv: Int
     let gustMph, gustKph: Double
@@ -60,7 +61,7 @@ struct CurrentClass5: Codable {
 
 // MARK: - Condition
 struct Condition5: Codable {
-    let text: Text5
+    let text: String
     let icon: String
     let code: Int
 }
@@ -74,25 +75,25 @@ struct Condition5: Codable {
 
 
 
-enum Text5: String, Codable {
-    case clear = "Clear"
-    case partlyCloudy = "Partly cloudy"
-    case patchyRainPossible = "Patchy rain possible"
-    case sunny = "Sunny"
-}
+//enum Text5: String, Codable {
+//    case clear = "Clear"
+//    case partlyCloudy = "Partly cloudy"
+//    case patchyRainPossible = "Patchy rain possible"
+//    case sunny = "Sunny"
+//}
 
-enum WindDir: String, Codable {
-    case e = "E"
-    case ene = "ENE"
-    case ese = "ESE"
-    case n = "N"
-    case ne = "NE"
-    case nnw = "NNW"
-    case nw = "NW"
-    case se = "SE"
-    case nne = "NNE"
-    
-}
+//enum WindDir: String, Codable {
+//    case e = "E"
+//    case ene = "ENE"
+//    case ese = "ESE"
+//    case n = "N"
+//    case ne = "NE"
+//    case nnw = "NNW"
+//    case nw = "NW"
+//    case se = "SE"
+//    case nne = "NNE"
+//
+//}
 
 
 

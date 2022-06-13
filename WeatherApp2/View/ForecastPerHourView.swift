@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct ForecastPerHour: View {
-    @StateObject var vm = WeatherViewModel()
+
+    @EnvironmentObject var vm: WeatherViewModel
+    //@StateObject var vm = WeatherViewModel()
+    
     var body: some View {
         ZStack {
             Color(.init(srgbRed: 0.35, green: 0.62, blue: 0.94, alpha: 1))
@@ -18,7 +21,7 @@ struct ForecastPerHour: View {
                         ForEach(items.forecast.forecastday) { keys in
                             ForEach(keys.hour) { elements in
                                 VStack(spacing: 0) {
-                                    Text("\(vm.unixTimeConvert(unixTime: elements.timeEpoch))")
+                                    Text("\(vm.unixTimeToWed(unixTime: elements.timeEpoch, timeformat: timeFormat.hoursDays.rawValue))")
                                     AsyncImage(url: URL(string: "https:\(keys.day.condition.icon)")) { phase in
                                         switch phase {
                                         case .empty:
@@ -42,9 +45,7 @@ struct ForecastPerHour: View {
                     }
                     .frame(width: 90, height: 100)
                 }
-                //.background(Color.red)
             }
-            
             .foregroundColor(.white)
             .frame(height: 50)
         }

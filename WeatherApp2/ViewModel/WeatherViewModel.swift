@@ -8,6 +8,9 @@
 import Foundation
 import Combine
 
+let key: String = "9f3b3debc4ac4497aa9205218220806"
+let baseUrl: String = "https://api.weatherapi.com/v1/"
+
 class WeatherViewModel: ObservableObject {
     
     @Published var currentWeather: [Current] = []
@@ -15,14 +18,14 @@ class WeatherViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable> ()
     
     
+  
     init () {
-        getCurrentWeather ()
-        getForecastFiveDays ()
-        //timeConvert (unixTime: 1)
+        getForecastFiveDays (lat: "47.8388", lon: "35.1396")
+        getCurrentWeather2  (lat: "47.8388", lon: "35.1396")
     }
     
-    func getCurrentWeather () {
-        guard let url = URL(string: "https://api.weatherapi.com/v1/current.json?key=9f3b3debc4ac4497aa9205218220806&q=134.249.4.247&aqi=no") else { return }
+    func getCurrentWeather2 (lat: String, lon: String) {
+        guard let url = URL(string: "\(baseUrl)current.json?key=\(key)&q=\(lat),\(lon)&aqi=no") else { return }
         URLSession.shared.dataTaskPublisher(for: url)
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
@@ -31,18 +34,22 @@ class WeatherViewModel: ObservableObject {
                 switch completion {
                 case .finished:
                     print("Finished")
+                    print("lat: \(lat), lon: \(lon)")
                 case .failure(let error):
                     print("There was an error in getCurrentWeather. \(error) ")
                 }
             } receiveValue: { [weak self] (returnedPosts) in
+                self?.currentWeather = []
                 self?.currentWeather.append(returnedPosts)
                 
             }
             .store(in: &cancellables)
     }
     
-    func getForecastFiveDays () {
-        guard let url = URL(string: "https://api.weatherapi.com/v1/forecast.json?key=9f3b3debc4ac4497aa9205218220806&q=134.249.4.247&days=5&aqi=no&alerts=no") else { return }
+    
+    
+    func getForecastFiveDays (lat: String, lon: String) {
+        guard let url = URL(string: "\(baseUrl)forecast.json?key=\(key)&q=\(lat),\(lon)&days=5&aqi=no&alerts=no") else { return }
         URLSession.shared.dataTaskPublisher(for: url)
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
@@ -55,6 +62,7 @@ class WeatherViewModel: ObservableObject {
                     print("There was an error in getForecastFiveDays. \(error) ")
                 }
             } receiveValue: { [weak self] (returnedPosts) in
+                self?.forecastFiveDays = []
                 self?.forecastFiveDays.append(returnedPosts)
             }
             .store(in: &cancellables)
@@ -69,40 +77,23 @@ class WeatherViewModel: ObservableObject {
         return output.data
     }
     
-    func unixTimeConvert (unixTime: Int) -> String {
+    // Конвертер времени
+    func unixTimeToWed (unixTime: Int, timeformat: String) -> String {
         
         let unixTimestamp = Double(unixTime)
         let date = Date(timeIntervalSince1970: unixTimestamp)
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "EEST")
         dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = timeformat
         let strDate = dateFormatter.string(from: date)
         return strDate
     }
     
-    func unixTimeToWed (unixTime: Int) -> String {
-        
-        let unixTimestamp = Double(unixTime)
-        let date = Date(timeIntervalSince1970: unixTimestamp)
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "EEST")
-        dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "E"
-        let strDate = dateFormatter.string(from: date)
-        return strDate
-    }
-    
-    func unixTimeToMain (unixTime: Int) -> String {
-        
-        let unixTimestamp = Double(unixTime)
-        let date = Date(timeIntervalSince1970: unixTimestamp)
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "EEST")
-        dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "E, MMM dd"
-        let strDate = dateFormatter.string(from: date)
-        return strDate
-    }
-    
+}
+
+enum timeFormat: String {
+    case Wednesday = "E"
+    case shortData = "E, MMM dd"
+    case hoursDays = "HH:mm"
 }
