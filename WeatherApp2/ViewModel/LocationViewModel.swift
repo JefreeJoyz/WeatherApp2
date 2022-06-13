@@ -18,7 +18,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
     var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 47.8388, longitude: 35.1396),
-        span: MKCoordinateSpan(latitudeDelta: 7.0, longitudeDelta: 7.0))
+        span: MKCoordinateSpan(latitudeDelta: 12.0, longitudeDelta: 12.0))
     
     @Published var localCities: [MyCity]
     
@@ -55,7 +55,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
             print("go into settings and turn it on")
         case .authorizedAlways, .authorizedWhenInUse:
             // если пермишены предоставлены - я центрирую карту на реальную локацию через locationManager.location?.coordinate
-            region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)) // force-unwrap делать нельзя, позже переделать
+            //region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)) // force-unwrap делать нельзя, позже переделать
+            print("Permissions ok")
         @unknown default:
             break
         }
@@ -74,7 +75,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
         showLocationList = false
     }
     
-    // Нужна для того, что бы дернуть функцию
+    // Выбранный город
     @Published var mapLocation: MyCity {
         didSet {
             updateMapRegion(location: mapLocation)
@@ -86,7 +87,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
         withAnimation(.easeInOut) {
             region = MKCoordinateRegion(
                 center: location.coordinates,
-                span: MKCoordinateSpan(latitudeDelta: 7.0, longitudeDelta: 7.0))
+                span: MKCoordinateSpan(latitudeDelta: 12.0, longitudeDelta: 12.0))
         }
     }
 }

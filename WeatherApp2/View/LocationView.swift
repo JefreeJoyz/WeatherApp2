@@ -11,6 +11,7 @@ import MapKit
 struct LocationView: View {
     
     @EnvironmentObject var vm: LocationManager
+    @EnvironmentObject var vmv : WeatherViewModel
     
     var body: some View {
         ZStack {
@@ -18,18 +19,24 @@ struct LocationView: View {
             Map(coordinateRegion: $vm.region,
                 showsUserLocation: true,
                 annotationItems: vm.localCities,
-                annotationContent: { location in
-                // Flags on the map
-                MapAnnotation(coordinate: location.coordinates) {
+                annotationContent: { item in
+                MapAnnotation(coordinate: item.coordinates) {
                     LocationMapAnnotationView()
-                    //LocationMapAnnotationView()
-                    // vm.MapLocation == location - if our location is current
                         .onTapGesture {
-                            vm.showLocation(location: location)
+                            // Обновляем наш mapLocation - выбранный город
+                            vm.showLocation(location: item)
+                            
+                            // Обновляем погоду
+                            vmv.getCurrentWeather2(
+                                lat: String(item.coordinates.latitude),
+                                lon: String(item.coordinates.longitude))
+                            vmv.getForecastFiveDays(
+                                lat: String(item.coordinates.latitude),
+                                lon: String(item.coordinates.longitude))
                         }
                 }
             })
-             .ignoresSafeArea()
+            .ignoresSafeArea()
             
             VStack {
                 Button {
