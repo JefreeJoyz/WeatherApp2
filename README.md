@@ -1,1 +1,9 @@
-Weather app. MVVM, SwiftUI, MapKit, Combine
+#Weather app. 
+
+MVVM 
+
+SwiftUI, MapKit, Combine
+
+Functional:
+
+Current weather
