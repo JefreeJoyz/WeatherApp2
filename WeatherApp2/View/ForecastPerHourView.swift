@@ -52,7 +52,7 @@ struct ForecastPerHour: View {
             .foregroundColor(.white)
             .frame(height: 50)
         }
-        .frame(height: 150)
+        .frame(height: 140)
     }
 }
 
