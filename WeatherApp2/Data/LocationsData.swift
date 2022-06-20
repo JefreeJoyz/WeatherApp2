@@ -16,19 +16,19 @@ class LocationsData {
         MyCity(
             name: "Zaporizha",
             cityName: "Запорожье",
-            coordinates: CLLocationCoordinate2D(latitude: 47.8388, longitude: 35.1396),
+            coordinates: CLLocationCoordinate2D(latitude: 47.84, longitude: 35.14),
             description: ""),
 
         MyCity(
             name: "Kyiv",
             cityName: "Киев",
-            coordinates: CLLocationCoordinate2D(latitude: 50.4501, longitude: 30.5234),
+            coordinates: CLLocationCoordinate2D(latitude: 50.46, longitude: 30.54),
             description: ""),
         
         MyCity(
             name: "Odesa",
             cityName: "Одеса",
-            coordinates: CLLocationCoordinate2D(latitude: 46.4825, longitude: 30.7233),
+            coordinates: CLLocationCoordinate2D(latitude: 46.47, longitude: 30.73),
             description: ""),
     ]
 }

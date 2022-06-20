@@ -20,8 +20,13 @@ struct WeatherNow: View {
                     VStack (alignment: .leading) {
                         HStack {
                             Image(systemName: "location.fill")
+                                .onTapGesture {
+                                    vm.getCurrentWeather2(lat: vmv.userLatitude, lon: vmv.userLongitude)
+                                    vm.getForecastFiveDays(lat: vmv.userLatitude, lon: vmv.userLongitude)
+                                }
                             // Выбранный город
-                            Text("\(vmv.mapLocation.cityName)")
+                            //Text("\(vmv.mapLocation.cityName)")
+                            Text("\(temperature.location.name)")
                             Spacer()
                             // Навигация по клику по картинке
                             NavigationLink {

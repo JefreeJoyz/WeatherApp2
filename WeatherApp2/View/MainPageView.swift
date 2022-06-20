@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainPageView: View {
     @EnvironmentObject var vm: WeatherViewModel
+    @EnvironmentObject var vmv: LocationManager
 
     var body: some View {
         ZStack {

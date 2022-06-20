@@ -16,12 +16,16 @@ class WeatherViewModel: ObservableObject {
     @Published var currentWeather: [Current] = []
     @Published var forecastFiveDays: [Forecast] = []
     var cancellables = Set<AnyCancellable> ()
+    //var getCurrentCoordinates = LocationManager()
     
     
   
     init () {
         getForecastFiveDays (lat: "47.8388", lon: "35.1396")
         getCurrentWeather2  (lat: "47.8388", lon: "35.1396") // zp
+        
+//        getForecastFiveDays (lat: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.latitude))", lon: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.longitude))")
+//        getCurrentWeather2  (lat: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.latitude))", lon: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.longitude))") // zp
     }
     
     // Получаем прогноз на сегодня
@@ -36,13 +40,14 @@ class WeatherViewModel: ObservableObject {
                 case .finished:
                     print("Finished")
                     print("lat: \(lat), lon: \(lon)")
+                    print("url из sink \(url)")
                 case .failure(let error):
                     print("There was an error in getCurrentWeather. \(error) ")
                 }
             } receiveValue: { [weak self] (returnedPosts) in
+                
                 self?.currentWeather = []
                 self?.currentWeather.append(returnedPosts)
-                
             }
             .store(in: &cancellables)
     }
