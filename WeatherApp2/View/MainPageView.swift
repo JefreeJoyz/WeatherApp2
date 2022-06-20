@@ -14,6 +14,7 @@ struct MainPageView: View {
         ZStack {
             VStack (spacing: 0) {
                 WeatherNow()
+                    .ignoresSafeArea()
                 ForecastPerHour()
                 ForecastPerEachDay()
                 Spacer()
@@ -29,6 +30,8 @@ struct MainPageView: View {
 struct MainPageView_Previews: PreviewProvider {
     static var previews: some View {
         MainPageView()
+            .environmentObject(dev.homeVM)
+            .environmentObject(dev.homeVML)
     }
 }
 

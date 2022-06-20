@@ -59,5 +59,6 @@ struct ForecastPerHour: View {
 struct ForecastPerHour_Previews: PreviewProvider {
     static var previews: some View {
         ForecastPerHour()
+            .environmentObject(dev.homeVM)
     }
 }

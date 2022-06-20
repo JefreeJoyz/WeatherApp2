@@ -78,12 +78,14 @@ struct WeatherNow: View {
             .padding(.top)
             .padding(.horizontal)
         }
-        .frame(height: 300)
+        //.frame(height: 300)
     }
 }
 
 struct WeatherNow_Previews: PreviewProvider {
     static var previews: some View {
         WeatherNow()
+            .environmentObject(dev.homeVM)
+            .environmentObject(dev.homeVML)
     }
 }

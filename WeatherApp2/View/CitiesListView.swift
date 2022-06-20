@@ -39,5 +39,7 @@ struct CitiesListView: View {
 struct CitiesListView_Previews: PreviewProvider {
     static var previews: some View {
         CitiesListView()
+            .environmentObject(dev.homeVM)
+            .environmentObject(dev.homeVML)
     }
 }
