@@ -50,6 +50,7 @@ extension WeatherNow {
                             }
                         // Выбранный город
                         Text("\(temperature.location.name)")
+                            .lineLimit(1)
                         Spacer()
                         // Навигация по клику по картинке
                         NavigationLink {
