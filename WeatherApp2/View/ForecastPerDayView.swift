@@ -12,7 +12,7 @@ struct ForecastPerEachDay: View {
     @EnvironmentObject var vm: WeatherViewModel
     
     var body: some View {
-        List {
+       // List {
             ForEach(vm.forecastFiveDays) { items in
                 ForEach(items.forecast.forecastday) { key in
                     HStack {
@@ -42,9 +42,10 @@ struct ForecastPerEachDay: View {
                             }
                         }
                     }
+                    .padding(.horizontal, 30)
                 }
             }
-        }
+        //}
         .listStyle(.plain)
     }
 }

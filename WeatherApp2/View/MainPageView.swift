@@ -13,13 +13,17 @@ struct MainPageView: View {
 
     var body: some View {
         ZStack {
-            VStack (spacing: 0) {
-                WeatherNow()
+            ScrollView {
+                VStack (spacing: 0) {
+                    WeatherNow()
                     .ignoresSafeArea()
-                ForecastPerHour()
-                ForecastPerEachDay()
-                Spacer()
+                    .frame(maxHeight: 350)
+                    ForecastPerHour()
+                    ForecastPerEachDay()
+                    Spacer()
+                }
             }
+            .ignoresSafeArea()
         }
         .navigationTitle("Main")
         .navigationBarHidden(true)
@@ -31,8 +35,10 @@ struct MainPageView: View {
 struct MainPageView_Previews: PreviewProvider {
     static var previews: some View {
         MainPageView()
+            .previewDevice("iPhone 13")
             .environmentObject(dev.homeVM)
             .environmentObject(dev.homeVML)
+            .previewInterfaceOrientation(.portrait)
     }
 }
 

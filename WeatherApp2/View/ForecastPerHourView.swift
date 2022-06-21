@@ -53,6 +53,7 @@ struct ForecastPerHour: View {
             .frame(height: 50)
         }
         .frame(height: 140)
+        .ignoresSafeArea()
     }
 }
 
