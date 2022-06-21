@@ -13,3 +13,5 @@ Forecast for 3 days: icon, date, min/max temp
 Choosing cities from list
 
 Show cities on the map with possibility click on them and get the current weather
+
+Support landscape mode
