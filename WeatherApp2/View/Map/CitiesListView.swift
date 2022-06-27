@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CitiesListView: View {
     
-    @EnvironmentObject var vm : LocationManager
+    @EnvironmentObject var vm : LocationViewModel
     @EnvironmentObject var vmv : WeatherViewModel
     
     var body: some View {

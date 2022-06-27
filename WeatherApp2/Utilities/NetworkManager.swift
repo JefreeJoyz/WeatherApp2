@@ -25,15 +25,15 @@ class NetworkingManager {
         }
     }
     
-    static func download(url: URL) -> AnyPublisher<Data, Error> {
-       //let temp = - что бы посмотреть, какой тип надо вернуть, присваиваем переменной URLSession и option+click по переменной
-        // после этого - добавляем .eraseToAnyPublisher() и копируем из ошибки требуемый возвращаемый тип
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .subscribe(on: DispatchQueue.global(qos: .default))
-            .tryMap({ try handleUrlResponse(output: $0, url: url) })
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
+//    static func download(url: URL) -> AnyPublisher<Data, Error> {
+//       //let temp = - что бы посмотреть, какой тип надо вернуть, присваиваем переменной URLSession и option+click по переменной
+//        // после этого - добавляем .eraseToAnyPublisher() и копируем из ошибки требуемый возвращаемый тип
+//        return URLSession.shared.dataTaskPublisher(for: url)
+//            .subscribe(on: DispatchQueue.global(qos: .default))
+//            .tryMap({ try handleUrlResponse(output: $0, url: url) })
+//            .receive(on: DispatchQueue.main)
+//            .eraseToAnyPublisher()
+//    }
     
     static func handleUrlResponse (output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,

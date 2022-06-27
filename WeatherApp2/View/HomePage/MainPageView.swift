@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainPageView: View {
     @EnvironmentObject var vm: WeatherViewModel
-    @EnvironmentObject var vmv: LocationManager
+    @EnvironmentObject var vmv: LocationViewModel
 
     var body: some View {
         ZStack {
@@ -29,7 +29,7 @@ struct MainPageView: View {
         .navigationBarHidden(true)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            vmv.checkIfLocationServivesIsEnabled()
+            vmv.locationService.checkIfLocationServivesIsEnabled()
         }
 
     }

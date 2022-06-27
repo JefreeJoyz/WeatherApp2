@@ -10,7 +10,7 @@ import SwiftUI
 struct WeatherNow: View {
     
     @EnvironmentObject var vm: WeatherViewModel
-    @EnvironmentObject var vmv: LocationManager
+    @EnvironmentObject var vmv: LocationViewModel
     
     var body: some View {
         ZStack {

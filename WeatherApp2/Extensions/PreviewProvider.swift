@@ -25,5 +25,5 @@ class DeveloperPreview {
     private init () { }
     
     let homeVM = WeatherViewModel()
-    let homeVML = LocationManager()
+    let homeVML = LocationViewModel()
 }

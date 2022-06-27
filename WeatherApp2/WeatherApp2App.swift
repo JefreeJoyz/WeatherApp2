@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct WeatherApp2App: App {
-    @StateObject private var vm = LocationManager()
+    @StateObject private var vm = LocationViewModel()
     @StateObject private var vwm = WeatherViewModel()
     var body: some Scene {
         WindowGroup {
@@ -20,7 +20,7 @@ struct WeatherApp2App: App {
             .environmentObject(vm)
             .environmentObject(vwm)
             .onAppear {
-                    vm.checkIfLocationServivesIsEnabled()
+                vm.locationService.checkIfLocationServivesIsEnabled()
                 }
             .navigationViewStyle(.stack)
         }

@@ -8,66 +8,14 @@
 import MapKit
 import SwiftUI
 
-class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { // CLLocationManagerDelegate - уведомляет нас каждый раз
-    
-    override init () {
-        let localCities = LocationsData.cities
-        self.localCities = localCities
-        self.mapLocation = localCities.first!
-    }
-    var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
-    @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 47.8388, longitude: 35.1396),
-        span: MKCoordinateSpan(latitudeDelta: 12.0, longitudeDelta: 12.0))
-    
-    @Published var localCities: [MyCity]
-    
-    // Инициация locationManager
-    func checkIfLocationServivesIsEnabled () {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager = CLLocationManager ()
-            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            //checkLocationAuthorization () - если пропишем так, то оно запросит пермишен только в 1й раз. А потом если юзер ограничит их - оно спрашивать не будет
-            locationManager?.delegate = self
-        } else {
-            print ("locationServices isn't Enabled")
-        }
-    }
-    
-    // Получаем координаты юзера
-    var userLatitude: String {
-            return "\(locationManager?.location?.coordinate.latitude ?? 0)"
-        }
-    var userLongitude: String {
-            return "\(locationManager?.location?.coordinate.longitude ?? 0)"
-        }
-    
-    // Проверяем наличие пермишенов
-    private func checkLocationAuthorization () {
-        guard let locationManager = locationManager else { return }
-        switch locationManager.authorizationStatus {
-            
-        case .notDetermined: // пермишены не запрошены
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted: // запрещено, обычно родителями
-            print("check your parent control")
-        case .denied: // забрали пермишены
-            print("go into settings and turn it on")
-        case .authorizedAlways, .authorizedWhenInUse:
-            // если пермишены предоставлены - я центрирую карту на реальную локацию через locationManager.location?.coordinate
-            //region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)) // force-unwrap делать нельзя, позже переделать
-            print("Permissions ok")
-        @unknown default:
-            break
-        }
-    }
-    // Система дергает этот метод каждый раз, как только мы создаем locationManager и повторно, если изменились доступы аппа (пермишены)
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization ()
-    }
+class LocationViewModel: NSObject,CLLocationManagerDelegate, ObservableObject { // CLLocationManagerDelegate - уведомляет нас каждый раз
     
     // Показать лист городов
     @Published var showLocationList: Bool = false
+    @Published var localCities: [MyCity]
+    var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
+    
+    let locationService = LocationManager()
     
     
     func showLocation(location: MyCity) {
@@ -90,4 +38,23 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject { //
                 span: MKCoordinateSpan(latitudeDelta: 12.0, longitudeDelta: 12.0))
         }
     }
+    
+    // Получаем координаты юзера
+    var userLatitude: String {
+        return "\(locationService.locationManager?.location?.coordinate.latitude ?? 0)"
+        }
+    var userLongitude: String {
+        return "\(locationService.locationManager?.location?.coordinate.longitude ?? 0)"
+        }
+    
+    override init () {
+        let localCities = LocationsData.cities
+        self.localCities = localCities
+        self.mapLocation = localCities.first!
+    }
+    
+    @Published var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 47.8388, longitude: 35.1396),
+        span: MKCoordinateSpan(latitudeDelta: 12.0, longitudeDelta: 12.0))
+    
 }

@@ -10,7 +10,7 @@ import MapKit
 
 struct LocationView: View {
     
-    @EnvironmentObject var vm: LocationManager
+    @EnvironmentObject var vm: LocationViewModel
     @EnvironmentObject var vmv: WeatherViewModel
     
     var body: some View {
@@ -58,7 +58,7 @@ struct LocationView: View {
             .padding()
         }
         .onAppear {
-            vm.checkIfLocationServivesIsEnabled()
+            vm.locationService.checkIfLocationServivesIsEnabled()
         }
     }
 }
