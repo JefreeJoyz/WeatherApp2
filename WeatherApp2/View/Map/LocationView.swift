@@ -12,6 +12,7 @@ struct LocationView: View {
     
     @EnvironmentObject var vm: LocationViewModel
     @EnvironmentObject var vmv: WeatherViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
@@ -33,6 +34,8 @@ struct LocationView: View {
                             vmv.forecastService.getForecastFiveDays(
                                 lat: String(item.coordinates.latitude),
                                 lon: String(item.coordinates.longitude))
+                            
+                            presentationMode.wrappedValue.dismiss()
                         }
                 }
             })

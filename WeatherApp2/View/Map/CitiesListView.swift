@@ -11,6 +11,7 @@ struct CitiesListView: View {
     
     @EnvironmentObject var vm : LocationViewModel
     @EnvironmentObject var vmv : WeatherViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         List {
@@ -24,6 +25,7 @@ struct CitiesListView: View {
                     vmv.forecastService.getForecastFiveDays(
                         lat: String(items.coordinates.latitude),
                         lon: String(items.coordinates.longitude))
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("\(items.cityName)")
                 }

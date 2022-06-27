@@ -13,7 +13,6 @@ class LocationViewModel: NSObject,CLLocationManagerDelegate, ObservableObject { 
     // Показать лист городов
     @Published var showLocationList: Bool = false
     @Published var localCities: [MyCity]
-    var locationManager: CLLocationManager? // Optional, ибо юзер может выключить свою геолокацию
     
     let locationService = LocationManager()
     
