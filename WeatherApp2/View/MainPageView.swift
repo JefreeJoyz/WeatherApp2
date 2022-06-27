@@ -28,6 +28,9 @@ struct MainPageView: View {
         .navigationTitle("Main")
         .navigationBarHidden(true)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            vmv.checkIfLocationServivesIsEnabled()
+        }
 
     }
 }

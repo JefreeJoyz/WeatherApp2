@@ -11,7 +11,7 @@ import MapKit
 struct LocationView: View {
     
     @EnvironmentObject var vm: LocationManager
-    @EnvironmentObject var vmv : WeatherViewModel
+    @EnvironmentObject var vmv: WeatherViewModel
     
     var body: some View {
         ZStack {
