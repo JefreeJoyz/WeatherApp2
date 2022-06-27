@@ -8,81 +8,37 @@
 import Foundation
 import Combine
 
-let key: String = "9f3b3debc4ac4497aa9205218220806"
-let baseUrl: String = "https://api.weatherapi.com/v1/"
+
 
 class WeatherViewModel: ObservableObject {
     
     @Published var currentWeather: [Current] = []
     @Published var forecastFiveDays: [Forecast] = []
+    
+    let dataService = WeatherDataService()
+    let forecastService = WeatherForecast()
     var cancellables = Set<AnyCancellable> ()
-    //var getCurrentCoordinates = LocationManager()
     
     
   
     init () {
-        getForecastFiveDays (lat: "47.8388", lon: "35.1396")
-        getCurrentWeather2  (lat: "47.8388", lon: "35.1396") // zp
+        addSubscribers ()
+    }
+    
+    func addSubscribers () {
+        dataService.$currentWeather
+            .sink { [weak self] returnedWeather in
+                self?.currentWeather = returnedWeather
+            }
+            .store(in: &cancellables)
         
-//        getForecastFiveDays (lat: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.latitude))", lon: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.longitude))")
-//        getCurrentWeather2  (lat: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.latitude))", lon: "\(String(describing: getCurrentCoordinates.locationManager?.location?.coordinate.longitude))") // zp
-    }
-    
-    // Получаем прогноз на сегодня
-    func getCurrentWeather2 (lat: String, lon: String) {
-        guard let url = URL(string: "\(baseUrl)current.json?key=\(key)&q=\(lat),\(lon)&aqi=no") else { return }
-        URLSession.shared.dataTaskPublisher(for: url)
-            .receive(on: DispatchQueue.main)
-            .tryMap(handleOutput)
-            .decode(type: Current.self, decoder: JSONDecoder())
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    print("Finished")
-                    print("lat: \(lat), lon: \(lon)")
-                    print("url из sink \(url)")
-                case .failure(let error):
-                    print("There was an error in getCurrentWeather. \(error) ")
-                }
-            } receiveValue: { [weak self] (returnedPosts) in
-                
-                self?.currentWeather = []
-                self?.currentWeather.append(returnedPosts)
+        forecastService.$forecastFiveDays
+            .sink { [weak self] returnedForecast in
+                self?.forecastFiveDays = returnedForecast
             }
             .store(in: &cancellables)
     }
-    
-    
-    // Получаем прогноз на ближайшие дни
-    func getForecastFiveDays (lat: String, lon: String) {
-        guard let url = URL(string: "\(baseUrl)forecast.json?key=\(key)&q=\(lat),\(lon)&days=5&aqi=no&alerts=no") else { return }
-        URLSession.shared.dataTaskPublisher(for: url)
-            .receive(on: DispatchQueue.main)
-            .tryMap(handleOutput)
-            .decode(type: Forecast.self, decoder: JSONDecoder())
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    print("Finished")
-                case .failure(let error):
-                    print("There was an error in getForecastFiveDays. \(error) ")
-                }
-            } receiveValue: { [weak self] (returnedPosts) in
-                self?.forecastFiveDays = []
-                self?.forecastFiveDays.append(returnedPosts)
-            }
-            .store(in: &cancellables)
-    }
-    
-    // Валидация хттп респонсов
-    func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
-        guard
-            let response = output.response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300 else {
-            throw URLError(.badServerResponse)
-        }
-        return output.data
-    }
+
     
     // Конвертер времени
     func unixTimeToWed (unixTime: Int, timeformat: String) -> String {

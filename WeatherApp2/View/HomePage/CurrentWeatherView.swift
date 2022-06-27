@@ -45,8 +45,8 @@ extension WeatherNow {
                     HStack {
                         Image(systemName: "location.fill")
                             .onTapGesture {
-                                vm.getCurrentWeather2(lat: vmv.userLatitude, lon: vmv.userLongitude)
-                                vm.getForecastFiveDays(lat: vmv.userLatitude, lon: vmv.userLongitude)
+                                vm.dataService.getCurrentWeather2(lat: vmv.userLatitude, lon: vmv.userLongitude)
+                                vm.forecastService.getForecastFiveDays(lat: vmv.userLatitude, lon: vmv.userLongitude)
                             }
                         // Выбранный город
                         Text("\(temperature.location.name)")

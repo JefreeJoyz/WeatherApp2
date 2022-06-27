@@ -18,10 +18,10 @@ struct CitiesListView: View {
                 // По клику на элемент - отправляем координаты города в функции получения прогноза на сейчас и на ближайшие дни
                 Button {
                     vm.showLocation(location: items)
-                    vmv.getCurrentWeather2(
+                    vmv.dataService.getCurrentWeather2(
                         lat: String(items.coordinates.latitude),
                         lon: String(items.coordinates.longitude))
-                    vmv.getForecastFiveDays(
+                    vmv.forecastService.getForecastFiveDays(
                         lat: String(items.coordinates.latitude),
                         lon: String(items.coordinates.longitude))
                 } label: {

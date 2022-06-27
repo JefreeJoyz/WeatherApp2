@@ -27,10 +27,10 @@ struct LocationView: View {
                             vm.showLocation(location: item)
                             
                             // Обновляем погоду
-                            vmv.getCurrentWeather2(
+                            vmv.dataService.getCurrentWeather2(
                                 lat: String(item.coordinates.latitude),
                                 lon: String(item.coordinates.longitude))
-                            vmv.getForecastFiveDays(
+                            vmv.forecastService.getForecastFiveDays(
                                 lat: String(item.coordinates.latitude),
                                 lon: String(item.coordinates.longitude))
                         }

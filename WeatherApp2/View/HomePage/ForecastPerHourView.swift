@@ -10,7 +10,6 @@ import SwiftUI
 struct ForecastPerHour: View {
 
     @EnvironmentObject var vm: WeatherViewModel
-    //@StateObject var vm = WeatherViewModel()
     
     var body: some View {
         ZStack {
