@@ -17,6 +17,7 @@ Choosing cities from list
 ![Simulator Screen Shot - iPhone 13 - 2022-06-27 at 13 51 57](https://user-images.githubusercontent.com/41231933/175925418-9616d0a0-ad37-4040-b258-cda849260e29.jpg)
 
 Show cities on the map with possibility click on them and get the current weather
+
 ![Simulator Screen Shot - iPhone 13 - 2022-06-27 at 13 46 29](https://user-images.githubusercontent.com/41231933/175925430-1f3ea5db-563e-4365-a026-98ab21711c69.jpg)
 
 Support landscape mode
